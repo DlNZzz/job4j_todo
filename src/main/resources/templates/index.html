@@ -28,12 +28,8 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="index">Главная<span class="sr-only">(current)</span></a>
             </div>
-            <form method="POST">
-                <div class="form-check">
-                    <input type="checkbox" name="visible" class="form-check-input" id="visibles">
-                    <label class="form-check-label" for="visibles">Показать все</label>
-                </div>
-            </form>
+            <a class="nav-item nav-link" th:href="@{/formLogin}">Войти</a>
+            <a class="nav-item nav-link" th:href="@{/formRegistration}">Зарегистрироваться</a>
         </div>
     </nav>
     <div class="row pt-3">
@@ -54,6 +50,17 @@
         </div>
     </div>
     <div class="row">
+        <form method="POST">
+
+            <body>
+            <form id='myform' name="form1" th:action="@{/index}" th:method="post" th:object="${demoDto}">
+                <label>Показать все задачи</label>
+                <input name="checkbox" type="checkbox" th:field="${demoDto.done}" checked onchange="$('#myform').submit();"/>
+                <input type="submit" value="Применить">
+            </form>
+            </body>
+
+        </form>
         <table class="table">
             <thead>
             <tr>
@@ -68,6 +75,7 @@
                 <td th:text="${item.id}"></td>
                 <td th:text="${item.description}" />
                 <td th:text="${item.created}" />
+                <td th:text="${item.done}" />
                 <td>
                     <input type="checkbox" name="visible" class="form-check-input" id="visible">
                     <label class="form-check-label" for="visible">Сделано</label>

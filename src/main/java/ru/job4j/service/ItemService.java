@@ -6,6 +6,7 @@ import ru.job4j.model.Item;
 import ru.job4j.persistence.ItemStore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @ThreadSafe
 @Service
@@ -21,7 +22,13 @@ public class ItemService {
         itemStore.add(item);
     }
 
-    public Object findAll() {
-        return new ArrayList<>(itemStore.findAll());
+    public List<Item> findAll(boolean done) {
+        if (done) {
+            System.out.println("all");
+            return new ArrayList<>(itemStore.findAll());
+        } else {
+            System.out.println("AllFalse");
+            return new ArrayList<>(itemStore.findAllFalse());
+        }
     }
 }

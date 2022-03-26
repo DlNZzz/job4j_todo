@@ -14,21 +14,17 @@ public class Item {
     private String description;
     private Timestamp created = new Timestamp(System.currentTimeMillis());
     private boolean done;
+    //@ManyToOne
+    //@JoinColumn(name = "users")
+    //private User user;
 
     public Item() {
     }
 
-    public Item(String description, Timestamp created, boolean done) {
-        this.description = description;
-        this.created = created;
-        this.done = done;
-    }
-
-    public Item(int id, String description, Timestamp created, boolean done) {
-        this.id = id;
-        this.description = description;
-        this.created = created;
-        this.done = done;
+    public static Item of(String description) {
+        Item item = new Item();
+        item.description = description;
+        return item;
     }
 
     public int getId() {
@@ -73,23 +69,19 @@ public class Item {
         }
         Item item = (Item) o;
         return id == item.id
-                && done == item.done
-                && Objects.equals(description, item.description)
-                && Objects.equals(created, item.created);
+                && Objects.equals(description, item.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, done);
+        return Objects.hash(id, description);
     }
 
     @Override
     public String toString() {
         return "Item{"
                 + "id=" + id
-                + ", description='" + description + '\''
-                + ", created=" + created
-                + ", done=" + done +
+                + ", description='" + description +
                 '}';
     }
 }
