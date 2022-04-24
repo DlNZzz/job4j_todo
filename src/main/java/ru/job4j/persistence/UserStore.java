@@ -2,7 +2,7 @@ package ru.job4j.persistence;
 
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
-import ru.job4j.model.Item;
+import ru.job4j.model.Task;
 
 import java.util.Collection;
 
@@ -10,10 +10,10 @@ import java.util.Collection;
 @Repository
 public class UserStore {
 
-    public void add(Item item) {
+    public void add(Task task) {
     }
 
-    public Collection<Item> findAll() {
+    public Collection<Task> findAll() {
         return null;
     }
 }

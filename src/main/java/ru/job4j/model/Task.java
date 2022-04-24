@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "items")
-public class Item {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +18,13 @@ public class Item {
     //@JoinColumn(name = "users")
     //private User user;
 
-    public Item() {
+    public Task() {
     }
 
-    public static Item of(String description) {
-        Item item = new Item();
-        item.description = description;
-        return item;
+    public static Task of(String description) {
+        Task task = new Task();
+        task.description = description;
+        return task;
     }
 
     public int getId() {
@@ -67,9 +67,9 @@ public class Item {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Item item = (Item) o;
-        return id == item.id
-                && Objects.equals(description, item.description);
+        Task task = (Task) o;
+        return id == task.id
+                && Objects.equals(description, task.description);
     }
 
     @Override
@@ -79,9 +79,11 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{"
-                + "id=" + id
-                + ", description='" + description +
+        return "Task{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", done=" + done +
                 '}';
     }
 }

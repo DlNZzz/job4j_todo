@@ -28,40 +28,44 @@
             <div class="navbar-nav">
                 <a class="nav-task nav-link active" href="index">Главная<span class="sr-only">(current)</span></a>
             </div>
+            <a class="nav-task nav-link" th:href="@{/allTask}">Все</a>
+            <a class="nav-task nav-link" th:href="@{/doneTask}">Выполненые</a>
+            <a class="nav-task nav-link" th:href="@{/newTask}">Новые</a>
+            <a class="nav-task nav-link" th:href="@{/formLogin}">Войти</a>
+            <a class="nav-task nav-link" th:href="@{/formRegistration}">Зарегистрироваться</a>
         </div>
     </nav>
-    <aside class="col-4">
-        <div th:if="${param.error}" class="text-danger">
-            Invalid username and password.
-            <br><br>
-        </div>
-        <div th:if="${param.logout}" class="text-danger">
-            You have been logged out.
-            <br><br>
-        </div>
-        <div class="card">
-            <article class="card-body">
-                <a href="/formLogin" class="float-right btn btn-outline-primary">Sign in</a>
-                <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                <form th:action="@{/login}" method="post">
-                    <div class="form-group">
-                        <label>Your name</label>
-                        <input name="username" class="form-control" placeholder="Username" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Your password</label>
-                        <input name="password" class="form-control" placeholder="******" type="password">
-                        <label>Repeat your password</label>
-                        <input name="password-repeat" class="form-control" placeholder="******" type="password">
-                    </div>
 
-                    <div class="form-group">
-                        <button type="submit" value="Sign Up" class="btn btn-primary btn-block"> Registration  </button>
-                    </div>
-                </form>
-            </article>
-        </div>
-    </aside>
+    <div class="row">
+        <form method="POST">
+
+            <body>
+            <form id='myform' name="form1" th:action="@{/index}" th:method="post">
+                <label>Все задачи</label>
+            </form>
+            </body>
+
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Сделано</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task: ${items}">
+                <td th:text="${task.id}"></td>
+                <td th:text="${task.description}"></td>
+                <td th:text="${task.created}"></td>
+                <td th:if="${task.done}">Сделано</td>
+                <td th:if="${!task.done}">Не сделано</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
