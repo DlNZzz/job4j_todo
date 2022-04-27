@@ -14,9 +14,6 @@ public class Task {
     private String description;
     private Timestamp created = new Timestamp(System.currentTimeMillis());
     private boolean done;
-    //@ManyToOne
-    //@JoinColumn(name = "users")
-    //private User user;
 
     public Task() {
     }
