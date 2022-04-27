@@ -1,5 +1,6 @@
 # job4j_todo
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7fef3355dec8402eada8f4719e04b32c)](https://www.codacy.com/gh/DlNZzz/job4j_todo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=DlNZzz/job4j_todo&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://app.travis-ci.com/DlNZzz/job4j_dreamjob.svg?branch=master)](https://app.travis-ci.com/DlNZzz/job4j_dreamjob)
 [![codecov](https://codecov.io/gh/DlNZzz/job4j_grabber/branch/master/graph/badge.svg?token=LGGZ49EZFI)](https://codecov.io/gh/DlNZzz/job4j_dreamjob)
 ![image](https://user-images.githubusercontent.com/49880295/164996285-ac5f58d6-8b4f-44a3-aee7-29c99bb9e79f.png)
