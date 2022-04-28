@@ -35,11 +35,6 @@ public class TaskStore {
     public Collection<Task> findAll(boolean done) {
         return this.tx(
                 session -> {
-                    /*
-                    String sql = "select * from items where done is true";
-                    Query que = session.createSQLQuery(sql).addEntity(Item.class);
-                    return que.list();
-                     */
                     Criteria criteria = session.createCriteria(Task.class)
                             .add(Restrictions.eq("done", done));
                     return criteria.list();

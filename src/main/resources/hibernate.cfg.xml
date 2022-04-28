@@ -17,6 +17,7 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property-->
         <mapping class="ru.job4j.model.Task" />
-        <!--mapping class="ru.job4j.model.User" /-->
+        <mapping class="ru.job4j.model.User" />
+        <mapping class="ru.job4j.model.Role" />
     </session-factory>
 </hibernate-configuration>

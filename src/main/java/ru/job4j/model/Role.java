@@ -4,23 +4,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "j_user")
-public class User {
+@Table(name = "j_role")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
-
-    public static User of(String name, Role role) {
-        User user = new User();
-        user.name = name;
-        user.role = role;
-        return user;
+    public static Role of(String name) {
+        Role role = new Role();
+        role.name = name;
+        return role;
     }
 
     public int getId() {
@@ -39,20 +34,12 @@ public class User {
         this.name = name;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id;
+        Role role = (Role) o;
+        return id == role.id;
     }
 
     @Override
