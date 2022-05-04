@@ -68,6 +68,7 @@
                     <div class="form-group">
                         <label for="description">Описание</label>
                         <input type="text" class="form-control" name="description" id="description" th:field="*{description}">
+                        <input type="hidden" name="user_id" th:field="*{user_id.id}"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Изменить</button>
                 </form>
@@ -78,12 +79,13 @@
         <form th:action="@{/deleteTask}" method="POST" th:object="${task}">
             <input type="hidden" name="id" th:field="*{id}"/>
             <button type="submit" class="btn btn-primary">Удалить</button>
+        </form>
         <form th:action="@{/doneTask}" method="POST" th:object="${task}">
             <input type="hidden" name="id" th:field="*{id}"/>
             <input type="hidden" name="description" th:field="*{description}"/>
+            <input type="hidden" name="user_id" th:field="*{user_id.id}"/>
             <button type="submit" class="btn btn-primary">Выполнить</button>
         </form>
-    <div>
 </div>
 </body>
 </html>

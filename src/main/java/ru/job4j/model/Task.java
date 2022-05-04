@@ -15,13 +15,11 @@ public class Task {
     private Timestamp created = new Timestamp(System.currentTimeMillis());
     private boolean done;
 
-    public Task() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user_id;
 
-    public static Task of(String description) {
-        Task task = new Task();
-        task.description = description;
-        return task;
+    public Task() {
     }
 
     public int getId() {
@@ -56,6 +54,14 @@ public class Task {
         this.done = done;
     }
 
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -81,6 +87,7 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", created=" + created +
                 ", done=" + done +
+                ", user_id=" + user_id +
                 '}';
     }
 }

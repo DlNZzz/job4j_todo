@@ -31,7 +31,14 @@
             <a class="nav-task nav-link" th:href="@{/allTask}">Все</a>
             <a class="nav-task nav-link" th:href="@{/doneTask}">Выполненые</a>
             <a class="nav-task nav-link" th:href="@{/newTask}">Новые</a>
-            <a class="nav-task nav-link" th:href="@{/formLogin}">Войти</a>
+            <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
+                <span th:text="${user.name}"></span>
+                <span> | Войти</span>
+            </a>
+            <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/logout}">
+                <span th:text="${user.name}"></span>
+                <span> | Выйти</span>
+            </a>
             <a class="nav-task nav-link" th:href="@{/formRegistration}">Зарегистрироваться</a>
         </div>
     </nav>
@@ -62,6 +69,7 @@
                 <th scope="col">Описание</th>
                 <th scope="col">Дата создания</th>
                 <th scope="col">Сделано</th>
+                <th scope="col">Автор</th>
             </tr>
             </thead>
             <tbody>
@@ -76,6 +84,7 @@
                 <td th:text="${task.created}"></td>
                 <td th:if="${task.done}">Сделано</td>
                 <td th:if="${!task.done}">Не сделано</td>
+                <td th:text="${task.user_id}">Не сделано</td>
             </tr>
             </tbody>
         </table>

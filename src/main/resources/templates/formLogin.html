@@ -31,36 +31,28 @@
         </div>
     </nav>
     <aside class="col-4">
-        <div th:if="${param.error}" class="text-danger">
-            Invalid username and password.
-            <br><br>
-        </div>
-        <div th:if="${param.logout}" class="text-danger">
-            You have been logged out.
-            <br><br>
-        </div>
         <div class="card">
             <article class="card-body">
                 <a href="/formRegistration" class="float-right btn btn-outline-primary">Sign up</a>
                 <h4 class="card-title mb-4 mt-1">Sign in</h4>
-                <form th:action="@{/login}" method="post">
+                <form th:action="@{/formLogin}" method="post">
                     <div class="form-group">
-                        <label>Your name</label>
-                        <input name="username" class="form-control" placeholder="Username" type="text">
+                        <label>Почта</label>
+                        <input name="name" class="form-control" placeholder="Username" type="text">
                     </div>
                     <div class="form-group">
                         <a class="float-right" href="#">Forgot?</a> <!---->
-                        <label>Your password</label>
+                        <label>Пароль</label>
                         <input name="password" class="form-control" placeholder="******" type="password">
                     </div>
                     <div class="form-group"> <!---->
                         <div class="checkbox">
-                            <label> <input type="checkbox"> Save password </label>
+                            <label> <input type="checkbox"> Сохранить пароль </label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" value="Sign In" class="btn btn-primary btn-block"> Login  </button>
+                        <button type="submit" value="Sign In" class="btn btn-primary btn-block">Войти</button>
                     </div>
                 </form>
             </article>

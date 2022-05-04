@@ -43,20 +43,20 @@
             <article class="card-body">
                 <a href="/formLogin" class="float-right btn btn-outline-primary">Sign in</a>
                 <h4 class="card-title mb-4 mt-1">Sign up</h4>
-                <form th:action="@{/login}" method="post">
+                <form th:action="@{/registrationUser}" method="post">
                     <div class="form-group">
-                        <label>Your name</label>
-                        <input name="username" class="form-control" placeholder="Username" type="text">
+                        <label>Имя</label>
+                        <input name="name" class="form-control" placeholder="Username" type="text">
                     </div>
                     <div class="form-group">
-                        <label>Your password</label>
+                        <label>Пароль</label>
                         <input name="password" class="form-control" placeholder="******" type="password">
-                        <label>Repeat your password</label>
-                        <input name="password-repeat" class="form-control" placeholder="******" type="password">
+                        <label>Повторите пароль</label>
+                        <input name="password" class="form-control" placeholder="******" type="password">
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" value="Sign Up" class="btn btn-primary btn-block"> Registration  </button>
+                        <button type="submit" value="Sign Up" class="btn btn-primary btn-block">Зарегистрироваться</button>
                     </div>
                 </form>
             </article>
