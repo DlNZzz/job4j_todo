@@ -65,7 +65,6 @@ public class TaskController {
 
     @PostMapping("/updateTask")
     private String updateTask(@ModelAttribute Task task) {
-        System.out.println(task + " --------------------------");
         taskService.update(task);
         return "formTask";
     }

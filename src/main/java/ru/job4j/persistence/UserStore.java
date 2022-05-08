@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+import org.hibernate.query.internal.QueryImpl;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.User;
 
@@ -31,19 +33,16 @@ public class UserStore {
     }
 
     public Optional<User> findUserByEmailAndPwd(String name, String password) {
-        List<User> list = this.tx(
+        return this.tx(
                 session -> {
-                    Criteria criteria = session.createCriteria(User.class)
-                            .add(Restrictions.eq("name", name))
-                            .add(Restrictions.eq("password", password));
-                    return criteria.list();
+                    Query query = session.createQuery(
+                            "FROM User WHERE name = :name AND password = :password"
+                    );
+                    query.setParameter("name", name);
+                    query.setParameter("password", password);
+                    return query.uniqueResultOptional();
                 }
         );
-        if (list.size() == 0) {
-            return Optional.empty();
-        } else {
-            return Optional.of(list.get(0));
-        }
     }
 
     private <T> T tx(final Function<Session, T> command) {

@@ -47,7 +47,6 @@ public class IndexControl {
     @PostMapping("/createItem")
     public String createItem(@ModelAttribute Task task, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        System.out.println(user);
         if (user == null) {
             user = new User();
             user.setName("Гость");
