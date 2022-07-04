@@ -2,7 +2,9 @@ package ru.job4j.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -11,8 +13,14 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String description;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Category> categories = new HashSet<>();
+
     private Timestamp created = new Timestamp(System.currentTimeMillis());
+
     private boolean done;
 
     @ManyToOne
@@ -60,6 +68,14 @@ public class Task {
 
     public void setUser_id(User user_id) {
         this.user_id = user_id;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

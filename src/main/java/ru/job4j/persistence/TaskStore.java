@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import ru.job4j.model.Category;
 import ru.job4j.model.Task;
 
 import javax.persistence.Entity;
@@ -28,10 +29,10 @@ public class TaskStore {
 
     public Collection<Task> findAll() {
         return this.tx(
-                session -> session.createQuery("from Task").list()
+                session -> session.createQuery("select distinct t from Task t join fetch t.categories").list()
         );
     }
-
+    //"select distinct c from Category c join fetch c.tasks"
     public Collection<Task> findAll(boolean done) {
         return this.tx(
                 session -> {
@@ -95,6 +96,12 @@ public class TaskStore {
                     session.update(task);
                     return null;
                 }
+        );
+    }
+
+    public List<Category> getAllCategories() {
+        return this.tx(
+                session -> session.createQuery("from Category").list()
         );
     }
 }

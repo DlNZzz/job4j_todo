@@ -1,7 +1,43 @@
 package ru.job4j;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import ru.job4j.model.Category;
+
+import java.util.List;
 
 public class HbmRun {
+    /*
+    public static void main(String[] args) {
+
+        List<Category> list;
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure().build();
+        try {
+            SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+            Session session = sf.openSession();
+            session.beginTransaction();
+
+            Category category = Category.of("Consulting");
+            session.save(category);
+            Category category2 = Category.of("Housework");
+            session.save(category2);
+            Category category3 = Category.of("LearningNew");
+            session.save(category3);
+
+            session.getTransaction().commit();
+            session.close();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+    }
+    */
+
     /*
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
