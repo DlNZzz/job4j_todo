@@ -32,7 +32,7 @@ public class TaskStore {
                 session -> session.createQuery("select distinct t from Task t join fetch t.categories").list()
         );
     }
-    //"select distinct c from Category c join fetch c.tasks"
+
     public Collection<Task> findAll(boolean done) {
         return this.tx(
                 session -> {

@@ -88,7 +88,11 @@
                     <span th:text="${task.id}"></span>
                 </td>
                 <td th:text="${task.description}"></td>
-                <td th:each="categ : ${task.categories}" th:value="${categ.id}" th:text="${categ.name}"></td>
+                <td>
+                    <ul>
+                        <li th:each="category : ${task.categories}" th:text="${category.name}">user name</li>
+                    </ul>
+                </td>
                 <td th:text="${task.created}"></td>
                 <td th:if="${task.done}">Сделано</td>
                 <td th:if="${!task.done}">Не сделано</td>
