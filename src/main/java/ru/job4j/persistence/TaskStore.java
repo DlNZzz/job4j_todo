@@ -36,9 +36,15 @@ public class TaskStore {
     public Collection<Task> findAll(boolean done) {
         return this.tx(
                 session -> {
+
                     Criteria criteria = session.createCriteria(Task.class)
                             .add(Restrictions.eq("done", done));
-                    return criteria.list();
+                    System.out.println(criteria.list() + "----------------------------------------------------------------------------------");
+
+                    Query query = session.createQuery("select distinct t from Task t join fetch t.categories where t.done = :done");
+                    query.setParameter("done", done);
+                    System.out.println(query.list() + "----------------------------------------------------------------------------------");
+                    return query.list();
                 }
         );
     }
@@ -73,6 +79,8 @@ public class TaskStore {
     public void update(Task task) {
         this.tx(
                 session -> {
+                    Task task1 = findById(task.getId());
+                    task.setCategories(task1.getCategories());
                     session.update(task);
                     return null;
                 }
@@ -90,9 +98,10 @@ public class TaskStore {
 
     public void done(Task task) {
         task.setDone(true);
-        System.out.println(task);
         this.tx(
                 session -> {
+                    Task task1 = findById(task.getId());
+                    task.setCategories(task1.getCategories());
                     session.update(task);
                     return null;
                 }

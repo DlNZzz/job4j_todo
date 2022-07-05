@@ -52,12 +52,6 @@ public class IndexControl {
         return "redirect:/index";
     }
 
-    @GetMapping("/createItemFail")
-    public String loginPage(Model model, @RequestParam(name = "fail", required = false) Boolean fail) {
-        model.addAttribute("fail", fail != null);
-        return "redirect:/index";
-    }
-
     @PostMapping("/createItem")
     public String createItem(@ModelAttribute Task task, HttpSession session, HttpServletRequest req) {
         String[] categories = req.getParameterValues("category.id");
@@ -67,9 +61,6 @@ public class IndexControl {
             user.setName("Гость");
             user.setId(1);
             user.setPassword(",");
-        }
-        if (categories == null || categories.length == 0) {
-            return "redirect:/createItemFail?fail=true";
         }
         Set<Category> categorySet = new HashSet<>();
         for (String s : categories) {

@@ -87,13 +87,12 @@ public class Task {
             return false;
         }
         Task task = (Task) o;
-        return id == task.id
-                && Objects.equals(description, task.description);
+        return id == task.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description);
+        return Objects.hash(id);
     }
 
     @Override
