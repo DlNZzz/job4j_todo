@@ -29,21 +29,17 @@ public class TaskStore {
 
     public Collection<Task> findAll() {
         return this.tx(
-                session -> session.createQuery("select distinct t from Task t join fetch t.categories").list()
+                session -> session.createQuery("select distinct t from Task t join fetch t.categories")
+                        .list()
         );
     }
 
     public Collection<Task> findAll(boolean done) {
         return this.tx(
                 session -> {
-
-                    Criteria criteria = session.createCriteria(Task.class)
-                            .add(Restrictions.eq("done", done));
-                    System.out.println(criteria.list() + "----------------------------------------------------------------------------------");
-
-                    Query query = session.createQuery("select distinct t from Task t join fetch t.categories where t.done = :done");
+                    Query query = session.createQuery(
+                            "select distinct t from Task t join fetch t.categories where t.done = :done");
                     query.setParameter("done", done);
-                    System.out.println(query.list() + "----------------------------------------------------------------------------------");
                     return query.list();
                 }
         );
